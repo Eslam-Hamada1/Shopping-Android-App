@@ -21,7 +21,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text("Sign Up"),
+          title: Text("Sign Up", style: TextStyle(fontWeight: FontWeight.bold)),
           centerTitle: true,
         ),
         body: Form(
@@ -108,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     dialog('Invalid Credentials', 'Please recheck the fields', 'OK', false);
                   }
                 },
-                child: const Text("Sign Up", style: TextStyle(fontSize: 16)),
+                child: Text("Sign Up", style: TextStyle(fontSize: MediaQuery.of(context).size.width*0.03)),
               ),
             ],
           )
@@ -127,7 +127,18 @@ class _SignUpPageState extends State<SignUpPage> {
           actions: [
             TextButton(
               onPressed: () { 
-                isGoodToGo ? Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage())) : Navigator.of(context).pop();
+                isGoodToGo ? Navigator.pushReplacement(context, PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) => const HomePage(),
+                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 600),
+                  ),
+                )
+                : Navigator.of(context).pop();
               },
               child: Text(buttonText),
             ),

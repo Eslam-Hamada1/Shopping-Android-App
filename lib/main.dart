@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 36, 72, 200)),
+        fontFamily: 'Suwannaphum',
       ),
       debugShowCheckedModeBanner: false,
     );
@@ -38,13 +39,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Title"),
+        title: const Text("Title"),
       ),
     );
   }
